@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background: linear-gradient(to bottom right,#ee82ee,#ffff00);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: aliceblue;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.7;
+}
+
+#game {
+    background: #39393992;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 40px;
+    box-shadow: 5px 5px 15px #8c7e40;
+    /*solid dotted double none dashed groove*/
+}
+
+#header{
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 3px dotted #ffffff40;
+}
+
+#header h1{
+    font-size: 5.1em;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 4px #b7b7b743;
+}
+
+#hp-bar{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+#hp-fill{
+    width: 300px;
+    height: 10px;
+    background: linear-gradient(90deg,#ffffff 5%, #fa4e4e, #ff0000);
+    border-radius: 15px;
+}
+
+#content{
+    margin: 15px 15px;
+}
+
+#text{
+    font-size: 1.2em;
+    text-align: center;
+    padding: 15px;
+    background: #ffffff76;
+    border-radius: 5px;
+    text-shadow: 4px 4px 4px #b7b7b786;
+}
+
+#image{
+    height: 200px;
+    margin-top: 10px;
+    background: #ffffff76;
+    border-radius: 15px;
+}
+
+#footer{
+    text-align: right;
+    border-top: 3px dotted #ffffff40;
+    color: #ffffff40;
+    font-size: 1em;
+}

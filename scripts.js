@@ -11,14 +11,39 @@ const scenes = {
         text: "Вася слышит шелест колышащейся арматуры",
         next: "intro4" 
     },
-    intro3: {
+    intro4: {
         text: "Вася достаёт фаонарик, чтобы проверить что над головой!",
-        choice: [
+        choices: [
             {text: "Игрорировать летящую арматуру", next: "smertOtArmaturi"},
-            {text: "Бежать к маме плакать", next: "happy_end"}
+            {text: "Бежать к маме плакать", next: "intro5"}
         ]
+    },
+    smertOtArmaturi: {
+        text: "Арматура начала падать. Че делать?",
+        choices: [
+            {text: "Смотреть как красио падает", next: "tochno_smert"},
+            {text: "Увернуться от арматуры как от пуль в матрице", next: "yvernutsa"}
+        ]
+    },
+    tochno_smert: {
+        text: "Тебе звонит смерть в нищите"
+    },
+    yvernutsa: {
+        text: "Ты идешь вдоль железнодорожных путей. Недалеко от тебя гудок состава!",
+        choices: [
+            {text: "Перебежать быстрее через пути, чтобы не опоздать на работу", next: "smertOtPoezda"},
+            {text: "Подождать пока проедет состав и перейти в безопастном месте", next: "waitTrain"}
+        ]
+    },
+    smertOtPoezda: {
+        text: "Тебе отрезало ногу составом, ты бежишь маме плакать"
+    },
+    waitTrain: {
+        text: "Ты подождал пока проедет состав, ты выжил ведь соблюдал технику безопастности"
     }
 }
+
+
 
 /* 
 const scenes = {
@@ -190,7 +215,7 @@ const scenes = {
         next: "ceh_priblizhenie3"
     },
     ceh_priblizhenie3: {
-        text: "Вася видит, что с станка слетела защитная крышка.",
+        text: "Вася видит, что со станка слетела защитная крышка.",
         choice: [
             {text: "Сразу выключить станок и сообщить", next: "ceh_opasnost_ubrana"},
             {text: "Подождать, пока оператор заметит", next: "ceh_opasnost_ignor"}
@@ -202,7 +227,7 @@ const scenes = {
         next: "ceh_opasnost_ignor2"
     },
     ceh_opasnost_ignor2: {
-        text: "Оператор получает порез. Кровь. Станок останавливают аварийно.",
+        text: "Осколок въебался в лицо оператора и расхуярил его в кровь. Станок останавливают аварийно.",
         next: "ceh_opasnost_ignor3"
     },
     ceh_opasnost_ignor3: {
@@ -395,3 +420,33 @@ const scenes = {
 };
 */
 
+let currentScene = "intro1";
+
+
+function showScene(sceneName){
+    const scene = scenes[sceneName];
+    
+    const text = document.getElementById("text");
+    text.textContent = scene.text;
+
+    choices.innerHTML = "";
+
+    if(scene.next){
+        const btn = document.createElement("button");
+        btn.textContent = "Продолжить...";
+        btn.onclick = () => showScene(scene.next);
+        choices.appendChild(btn);
+    }
+    else if(scene.choice){
+        scene.choice.forEach(element => {
+            const btn = document.createElement("button");
+            btn.textContent = element.text;
+            btn.onclick = () => showScene(element.next);
+            choices.appendChild(btn);
+        });
+    }
+}
+
+const choices = document.getElementById("choices");
+
+document.addEventListener("DOMContentLoaded", function() {showScene(currentScene, choices)});

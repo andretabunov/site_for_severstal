@@ -7,6 +7,7 @@
 
 body {
     background: linear-gradient(to bottom right,#ee82ee,#ffff00);
+    display: flex;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -18,6 +19,8 @@ body {
 
 #game {
     background: #39393992;
+    width: 40%;
+    min-width: 300px;
     border-radius: 15px;
     padding: 40px;
     margin: 40px;
@@ -51,6 +54,20 @@ body {
     border-radius: 15px;
 }
 
+#choices{
+    display: flex;
+    gap: 8px;
+}
+
+#choices button{
+    background-color: #ffffff76;
+    font-size: 1.2em;
+    border-radius: 5px;
+    flex: 1;
+    border: none;
+    cursor: pointer;
+}
+
 #content{
     margin: 15px 15px;
 }
@@ -73,7 +90,7 @@ body {
 
 #footer{
     text-align: right;
-    border-top: 3px dotted #ffffff40;
-    color: #ffffff40;
+    border-top: 3px dotted #ffffff50;
+    color: #ffffff50;
     font-size: 1em;
 }

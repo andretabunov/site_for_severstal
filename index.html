@@ -1,36 +1,39 @@
 <html>
     <head>
-
-        <title>Скебоб</title>
-
+        <title>Викторина по ТБ</title>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
-        <link rel="icon" href="base/favicon.ico" type="image/x-icon" sizes="128x128">
+        <link rel="icon" href="img/base/favicon.ico" type="image/x-icon" sizes="128x128">
     </head>
     <body>
         <div id="game">
+            <img src="img/base/Severstal_Logo_CYR_Blue_RGB.png" id="logo"></img>
             <div id="header">
-                <h1>Скебоб</h1>
-                <div id="hp-bar">
+                <h1 id="headerText">Викторина по ТБ</h1>
+            </div>
+            <div id="hp-bar">
                     <span>ЗДОРОВЬЕ: </span>
-                    <div id="hp-fill"></div>
-                    <span id="hp-txt">100</span>
+                    <div id="hp-fill">
+                        <span id="hp-text">100</span>
+                    </div>
                 </div>
+            <div>
+                <span style="display: none;" id="lossText">Ты проиграл!</span>
+                <Button onclick="StartGame()" id="enabledInteractive">Начать игру</Button>
             </div>
-
-            <div id="content">
-                <div id="text"> </div>
-                <div id="image"> </div>
+            <div id="interactive" style="display: none;">
+                <div id="content">
+                    <div id="image"> </div>
+                    <div id="text"> </div>
+                </div>
+                <div id="choices"></div>
             </div>
-
-            <div id="choices"></div>
-
             <div id="footer">
                 <p>все права защищены (с)</p>
                 <p>дети, батарея, podval (c)</p>
             </div>
         </div>
         <script src="scripts.js"></script>
-
     </body>
 </html>

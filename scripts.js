@@ -1,452 +1,453 @@
 const scenes = {
     intro1: {
-        text: "Вася пришёл на завод",
-        next: "intro2" 
+        text: "Одним ранним утром ты пришёл на завод.",
+        next: "intro2",
+        bg: "img/scene/1755848547.png",
+        heroLeft: "img/characters/rabotuaga.png",
+        soundEffect: "audio/short/shagi.mp3",
+        bgAudio: "audio/music/zvuki-zavoda.mp3"
     },
     intro2: {
-        text: "Вдали проходная",
-        next: "intro3" 
+        text: "Поприветсвовал своего коллегу — своего лучшего друга, Серёгу.",
+        next: "intro3",
+        heroRight: "img/characters/serega.png",
     },
     intro3: {
-        text: "Вася слышит шелест колышащейся арматуры",
-        next: "intro4" 
+        text: "Ты пришёл в свой цех, начал работать на токарном станке",
+        next: "intro4",
+        bg: "img/scene/stanok16x9.png",
+        heroLeft: "img/characters/rabotuaga.png",
+        heroRight: "", // - пусто
+        soundEffect: "audio/short/tokarni(9s).mp3",
     },
     intro4: {
-        text: "Вася достаёт фаонарик, чтобы проверить что над головой!",
-        choices: [
-            {text: "Игрорировать летящую арматуру", next: "smertOtArmaturi"},
-            {text: "Бежать к маме плакать", next: "intro5"}
-        ]
-    },
-    smertOtArmaturi: {
-        text: "Арматура начала падать. Че делать?",
-        choices: [
-            {text: "Смотреть как красио падает", next: "tochno_smert"},
-            {text: "Увернуться от арматуры как от пуль в матрице", next: "yvernutsa"}
-        ]
-    },
-    tochno_smert: {
-        text: "Тебе звонит смерть в нищите"
-    },
-    yvernutsa: {
-        text: "Ты идешь вдоль железнодорожных путей. Недалеко от тебя гудок состава!",
-        choices: [
-            {text: "Перебежать быстрее через пути, чтобы не опоздать на работу", next: "smertOtPoezda"},
-            {text: "Подождать пока проедет состав и перейти в безопастном месте", next: "waitTrain"}
-        ]
-    },
-    smertOtPoezda: {
-        text: "Тебе отрезало ногу составом, ты бежишь маме плакать"
-    },
-    waitTrain: {
-        text: "Ты подождал пока проедет состав, ты выжил ведь соблюдал технику безопастности"
-    }
-}
-
-
-
-/* 
-const scenes = {
-    // === ВСТУПЛЕНИЕ: ПРИХОД НА ЗАВОД ===
-    intro1: {
-        text: "Раннее утро. Туман окутывает территорию завода «Северсталь».",
-        next: "intro2"
-    },
-    intro2: {
-        text: "Вася впервые приходит на работу. В руках — новенький шлем и папка с инструктажем.",
-        next: "intro3"
-    },
-    intro3: {
-        text: "Охранник у проходной: «Привет, новичок. ФИО, табельный номер, документы».",
-        next: "intro4"
-    },
-    intro4: {
-        text: "Вася: «Василий Петров, табельный — 1175. Вот документы».",
-        next: "intro5"
+        text: "После обеда ты вернулся к станку, и вдруг почувствовал резкий запах дыма и гари",
+        next: "intro5",
+        soundEffect: "NaN"
     },
     intro5: {
-        text: "Охранник: «Шлем надень. Без СИЗ — ни шагу. Запомни: здесь каждый шаг — под контролем».",
-        next: "intro6"
+        text: "Осмотрелся, и вдруг увидел столб дыма в цехе.",
+        next: "intro6",
+        bg: "img/scene/pojar.png",
+        heroLeft: "img/characters/rabotuaga.png",
+        bgAudio: "audio/music/trevoznuaya.mp3"
     },
     intro6: {
-        text: "Вася надевает шлем. На голове он чувствует себя как космонавт.",
-        next: "intro7"
+        text: "Что же ты будешь делать?",
+        choices: [
+            { text: "Включу пожарную сигнализацию", next: "activateSignalization1" },
+            { text: "Попытаюсь выянить причину не поднимая тревогу", next: "findingСause", damage: 20 }
+        ],
+        soundEffect: "",
+        bgAudio: ""
     },
-    intro7: {
-        text: "Перед ним — огромная территория: краны, печи, рельсы, люди в спецодежде.",
-        next: "intro8"
+    // Левая ветка
+    activateSignalization1: {
+        text: "Быстро включаешь извещатель и зовёшь коллег",
+        next: "activateSignalization2",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    intro8: {
-        text: "Инженер Марина подходит к Васе: «Я — твой наставник. Сначала инструктаж».",
-        next: "intro9"
+    activateSignalization2: {
+        text: "Что делать дальше?",
+        choices: [
+            {text: "Хватаю огнетушитель", next: "fireExtinguisher1"},
+            {text: "Организую эвакуацию, жду пожарных", next: "evacuation"}
+        ],
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    intro9: {
-        text: "Марина: «Правила безопасности — не просто бумага. Они спасают жизни».",
-        next: "intro10"
+    evacuation: {
+        text: "Выводишь всех людей, следишь, чтобы все выбежали",
+        next: "salvation1",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    intro10: {
-        text: "Вася кивает: «Понял. Буду внимателен».",
-        next: "intro11"
+    fireExtinguisher1: {
+        text: "Огонь немного уменьшается, но дым нарастает",
+        next: "fireExtinguisher2",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-
-    // === СЦЕНА: ПЕРЕХОД ЗОНЫ ДВИЖЕНИЯ ===
-    intro11: {
-        text: "Они идут вдоль железнодорожных путей. Впереди — знак: «Опасная зона! Не заходить!»",
-        choice: [
-            {text: "Пройти быстрее, чтобы не опоздать", next: "puta_perehod_opasno"},
-            {text: "Подождать, пока пройдёт состав", next: "puta_perehod_bezopasno"}
-        ]
+    fireExtinguisher2: {
+        text: "О нет! огнетушитель пуст! Что же мне делать?",
+        choices: [
+            {text: "Искать другой огнетушитель", next: "fireExtinguisher1"},
+            {text: "Прячусь и жду помощи", next: "hidding"}
+        ],
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-
-    // --- ВЕТКА: ОПАСНЫЙ ПЕРЕХОД ---
-    puta_perehod_opasno: {
-        text: "Вася решает перейти. Внезапно — гудок! Состав идёт на полной скорости!",
-        next: "puta_perehod_opasno2"
+    hidding: {
+        text: "Что же делать если дым усиливается?",
+        choices: [ 
+            {text: "Беру маску/ткань и направляюсь к выходу", next: "salvation1"}, 
+            {text: "Паникую", next: "death1"} 
+        ],
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    puta_perehod_opasno2: {
-        text: "Марина кричит: «Вася! Назад!»",
-        next: "puta_perehod_opasno3"
+    // Правая ветка
+    findingСause: {
+        text: "Теряешь время, огонь распространяется!",
+        next: "panicInWorkShop1",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    puta_perehod_opasno3: {
-        text: "Вася едва успевает отпрыгнуть. Состав проносится в метре от него.",
-        next: "puta_perehod_opasno4"
+    panicInWorkShop1: {
+        text: "Огонь увеличивается, начинается паника в цехе!",
+        next: "helpingColleague",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    puta_perehod_opasno4: {
-        text: "Марина: «Ты мог погибнуть! Это нарушение! Тебя могут уволить!»",
-        next: "puta_perehod_opasno5"
+    helpingColleague: {
+        text: "Коллега не может встать",
+        choices: [
+            {text: "Помогаю выбраться", next: "panicInWorkShop2"},
+            {text: "Оставляю и бегу", next: "lossInDark"}
+        ],
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    puta_perehod_opasno5: {
-        text: "Вася дрожит: «Простите… не подумал».",
-        next: "puta_perehod_opasno6"
+    panicInWorkShop2: {
+        text: "Стажёры в цехе в панике, надо им помочь.",
+        choices: [
+            {text: "Помочь им выбраться через эвакуационный выход", next: "exitBlocked"},
+            {text: "Паниковать и не понимать что делать", next: "lossInDark"}
+        ],
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    puta_perehod_opasno6: {
-        text: "Марина: «Здесь нельзя «не подумать». Пойдём на повторный инструктаж».",
-        next: "obuchenie_posle_narusheniya"
+    exitBlocked: {
+        text: "О нет! Этот выход заблокирован",
+        choices: [
+            {text: "Искать другой эвакуационный выход", next: "salvation1"},
+            {text: "Паниковать", next: "death1"}
+        ],
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-
-    // --- ВЕТКА: БЕЗОПАСНЫЙ ПЕРЕХОД ---
-    puta_perehod_bezopasno: {
-        text: "Вася останавливается. Ждёт. Состав проходит. Марина улыбается.",
-        next: "puta_perehod_bezopasno2"
-    },
-    puta_perehod_bezopasno2: {
-        text: "Марина: «Молодец. Правило №1: всегда уступай технике».",
-        next: "puta_perehod_bezopasno3"
-    },
-    puta_perehod_bezopasno3: {
-        text: "Вася: «Теперь я запомню».",
-        next: "obuchenie_normal"
-    },
-
-    // === ОБЩАЯ ВЕТКА: ОБУЧЕНИЕ ===
-    obuchenie_normal: {
-        text: "Они подходят к зоне ремонта. Рядом — открытый люк.",
-        next: "luk_otkrit"
-    },
-    obuchenie_posle_narusheniya: {
-        text: "Вася сидит в учебном классе. На экране — видео с аварией на производстве.",
-        next: "video_urok"
-    },
-    video_urok: {
-        text: "Голос за кадром: «Одно неверное движение — и жизнь меняется навсегда».",
-        next: "video_urok2"
-    },
-    video_urok2: {
-        text: "Вася смотрит на свои руки. «Я больше не буду рисковать».",
-        next: "obuchenie_normal"
-    },
-
-    // === СЦЕНА: ОТКРЫТЫЙ ЛЮК ===
-    luk_otkrit: {
-        text: "Марина: «Видишь люк? Надо поставить ограждение и знак».",
-        choice: [
-            {text: "Проигнорировать — не моя зона", next: "luk_ignor"},
-            {text: "Поставить знак и ограждение", next: "luk_zakryt"}
-        ]
-    },
-
-    luk_ignor: {
-        text: "Вася проходит мимо. Через минуту — крик! Коллега провалился в люк!",
-        next: "luk_ignor2"
-    },
-    luk_ignor2: {
-        text: "Медики увозят пострадавшего. Марина: «Это твоя вина. Ты видел, но не помог».",
-        next: "luk_ignor3"
-    },
-    luk_ignor3: {
-        text: "Вася чувствует вину. Его вызывают на комиссию по ТБ.",
-        next: "komissiya"
-    },
-
-    komissiya: {
-        text: "Начальник цеха: «Ты нарушил правило №7: «Не оставляй опасность без внимания».",
-        next: "komissiya2"
-    },
-    komissiya2: {
-        text: "Васе выносят предупреждение. Он теряет премию за первый месяц.",
-        next: "end_guilt"
-    },
-
-    end_guilt: {
-        text: "Вася идёт домой. В голове — крик пострадавшего. Он понимает: безопасность — это ответственность.",
-        next: null
-    },
-
-    luk_zakryt: {
-        text: "Вася ставит знак и ограждение. Марина одобрительно кивает.",
-        next: "luk_zakryt2"
-    },
-    luk_zakryt2: {
-        text: "Марина: «Ты не просто следуешь правилам — ты защищаешь других».",
-        next: "luk_zakryt3"
-    },
-    luk_zakryt3: {
-        text: "Вася чувствует гордость. Он — часть большой системы безопасности.",
-        next: "ceh_priblizhenie"
-    },
-
-    // === СЦЕНА: РАБОТА С ОБОРУДОВАНИЕМ ===
-    ceh_priblizhenie: {
-        text: "Они подходят к станку. Он работает. Искры, шум, вибрация.",
-        next: "ceh_priblizhenie2"
-    },
-    ceh_priblizhenie2: {
-        text: "Марина: «Никогда не прикасайся к работающему оборудованию».",
-        next: "ceh_priblizhenie3"
-    },
-    ceh_priblizhenie3: {
-        text: "Вася видит, что со станка слетела защитная крышка.",
-        choice: [
-            {text: "Сразу выключить станок и сообщить", next: "ceh_opasnost_ubrana"},
-            {text: "Подождать, пока оператор заметит", next: "ceh_opasnost_ignor"}
-        ]
+    lossInDark: {
+        text: "Ты потерялся во тьме и дыму",
+        next: "death1",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
 
-    ceh_opasnost_ignor: {
-        text: "Через минуту — резкий хруст! Осколок металла летит в сторону!",
-        next: "ceh_opasnost_ignor2"
-    },
-    ceh_opasnost_ignor2: {
-        text: "Осколок въебался в лицо оператора и расхуярил его в кровь. Станок останавливают аварийно.",
-        next: "ceh_opasnost_ignor3"
-    },
-    ceh_opasnost_ignor3: {
-        text: "Марина: «Ты знал, но не действовал. Это халатность».",
-        next: "end_halatnost"
-    },
-    end_halatnost: {
-        text: "Васю временно отстраняют от работ. Он должен пройти повторное обучение.",
-        next: null
-    },
 
-    ceh_opasnost_ubrana: {
-        text: "Вася бежит к аварийной кнопке. Нажимает. Станок останавливается.",
-        next: "ceh_opasnost_ubrana2"
-    },
-    ceh_opasnost_ubrana2: {
-        text: "Марина: «Отличная реакция! Ты только что предотвратил травму!»",
-        next: "ceh_opasnost_ubrana3"
-    },
-    ceh_opasnost_ubrana3: {
-        text: "Начальник цеха подходит: «Молодец, новичок. Так держать!»",
-        next: "end_hero"
-    },
-    end_hero: {
-        text: "В конце смены Вася получает благодарность. Он понимает: безопасность — это проявление заботы.",
-        next: null
-    },
 
-    // === СЦЕНА: ЛИЧНЫЕ СРЕДСТВА ЗАЩИТЫ ===
-    siza_promezhutochno: {
-        text: "Вася чувствует жар. Шлем давит. Он думает снять его.",
-        choice: [
-            {text: "Снять шлем на минуту", next: "siza_snimat"},
-            {text: "Оставить шлем — правила важнее", next: "siza_ne_snimat"}
-        ]
+    // Спасение
+    salvation1: {
+        text: "Выходишь на свежий воздух",
+        next: "salvation2",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    siza_snimat: {
-        text: "Вася снимает шлем. В этот момент с потолка падает гайка!",
-        next: "siza_snimat2"
+    salvation2: {
+        text: "Ты спасён!",
+        next: "salvation3",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    siza_snimat2: {
-        text: "Гайка ударяет по голове. Вася падает. В больнице — сотрясение.",
-        next: "siza_snimat3"
+    salvation3: {
+        text: "На улице ты сообщаешь руководителю, встречаешь пожарных",
+        next: "salvation4",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    siza_snimat3: {
-        text: "Доктор: «Если бы был шлем — ничего бы не случилось».",
-        next: "end_travma"
+    salvation4: {
+        text: "Пожарные тушат огонь.",
+        next: "salvation5",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    end_travma: {
-        text: "Вася лежит в больнице. Урок усвоен, но ценой боли.",
-        next: null
+    salvation5: {
+        text: "Группа в безопастности — ПОБЕДА!",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    siza_ne_snimat: {
-        text: "Вася терпит. Пот стекает по лицу, но шлем на месте.",
-        next: "siza_ne_snimat2"
+    // Смерть
+    death1: {
+        text: "Ты теряешь ориентацию, задыхаешься",
+        next: "smertVnishite2",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    siza_ne_snimat2: {
-        text: "Марина: «Ты молодец. Даже в жару — соблюдаешь правила».",
-        next: "siza_ne_snimat3"
+    death2: {
+        text: "Ты потерял сознание от дыма",
+        next: "smertVnishite3",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    siza_ne_snimat3: {
-        text: "Вася улыбается. Он чувствует себя настоящим рабочим — ответственным и сильным.",
-        next: "end_pride"
+    death3: {
+        text: "Тебя спасли медики которые приехали на вызов",
+        next: "smertVnishite4",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     },
-    end_pride: {
-        text: "Первый день окончен. Вася выходит с завода. Он знает: каждый день — шанс спасти кого-то. Даже себя.",
-        next: null
-    },
-
-    // === СЦЕНА: ПОЖАРНАЯ ТРЕВОГА ===
-    pozhar_trevoza: {
-        text: "Внезапно сирена! «Пожарная тревога! Эвакуация!»",
-        next: "pozhar_trevoza2"
-    },
-    pozhar_trevoza2: {
-        text: "Люди бегут к выходу. Вася видит, что коллега пытается вернуться за сумкой.",
-        choice: [
-            {text: "Остановить коллегу и потащить к выходу", next: "pozhar_spasenie"},
-            {text: "Бежать самому — не твоё дело", next: "pozhar_ignor"}
-        ]
-    },
-    pozhar_ignor: {
-        text: "Вася убегает. Через минуту — взрыв! Коллега не успел выйти.",
-        next: "pozhar_ignor2"
-    },
-    pozhar_ignor2: {
-        text: "Позже — траур. Вася чувствует вину. Он мог помочь.",
-        next: "end_vina"
-    },
-    end_vina: {
-        text: "«Я должен был остановить его», — шепчет Вася. Безопасность — это не только правила, но и смелость.",
-        next: null
-    },
-    pozhar_spasenie: {
-        text: "Вася хватает коллегу: «Забудь сумку! Жизнь важнее!»",
-        next: "pozhar_spasenie2"
-    },
-    pozhar_spasenie2: {
-        text: "Они выбегают. Через секунду — взрыв в цеху. Все в шоке, но живы.",
-        next: "pozhar_spasenie3"
-    },
-    pozhar_spasenie3: {
-        text: "Начальство благодарит Васю. Его имя заносят в книгу почета.",
-        next: "end_geroy"
-    },
-    end_geroy: {
-        text: "Вася — герой дня. Он понял: безопасность — это не только следовать, но и защищать других.",
-        next: null
-    },
-
-    // === СЦЕНА: НАСТАВНИК УХОДИТ ===
-    marina_yhodit: {
-        text: "Марина: «Ты прошёл обучение. Теперь ты — часть команды».",
-        next: "marina_yhodit2"
-    },
-    marina_yhodit2: {
-        text: "Вася: «Спасибо. Я всё запомнил».",
-        next: "marina_yhodit3"
-    },
-    marina_yhodit3: {
-        text: "Марина передаёт ему бейдж: «Теперь ты — инспектор по безопасности на смену».",
-        next: "final_choice"
-    },
-    final_choice: {
-        text: "Вася смотрит на бейдж. Он может быть тем, кто спасёт чью-то жизнь.",
-        choice: [
-            {text: "Принять ответственность", next: "final_hero"},
-            {text: "Остаться просто рабочим", next: "final_neaktivno"}
-        ]
-    },
-    final_hero: {
-        text: "Через год Вася проводит инструктаж для новичков. Он говорит: «Безопасность — это не страх. Это уважение к жизни».",
-        next: null
-    },
-    final_neaktivno: {
-        text: "Вася продолжает работать. Он соблюдает правила, но не вмешивается. Кто-то другой должен заботиться.",
-        next: null
-    },
-
-    // === СЦЕНА: ФИНАЛ — ОТРАЖЕНИЕ ===
-    final_reflection: {
-        text: "Вася сидит на лавочке у завода. Солнце садится. Он думает о своём дне.",
-        next: "final_reflection2"
-    },
-    final_reflection2: {
-        text: "Сколько жизней можно спасти, просто следуя правилам? Сколько — нарушив их?",
-        next: "final_reflection3"
-    },
-    final_reflection3: {
-        text: "Он смотрит на шлем. На нём наклейка: «Безопасность — это привычка».",
-        next: null
-    },
-
-    // === ДОПОЛНИТЕЛЬНЫЕ СЦЕНЫ (для объёма до 100) ===
-    dop1: { text: "Вася заваривает чай в буфете. Вода кипит.", next: "dop2" },
-    dop2: { text: "Он замечает, что кран течёт. Что делать?", choice: [{text: "Сообщить", next: "dop3"}, {text: "Игнорировать", next: "dop4"}] },
-    dop3: { text: "Сантехник устраняет течь. Предотвращён риск короткого замыкания.", next: "dop5" },
-    dop4: { text: "Через день — замыкание. Поломка оборудования.", next: "dop6" },
-    dop5: { text: "Вася получает благодарность от службы эксплуатации.", next: "dop7" },
-    dop6: { text: "Начальник: «Это было предотвратимо».", next: "dop7" },
-    dop7: { text: "Мелочь, но важна.", next: "dop8" },
-
-    // Продолжим до 100...
-    // (для краткости пропущены сцены dop8–dop90, но в реальной реализации они были бы заполнены аналогично)
-
-    dop8: { text: "Вася видит масляное пятно на полу.", choice: [{text: "Замести", next: "dop9"}, {text: "Пройти", next: "dop10"}] },
-    dop9: { text: "Он убирает пятно. Никто не поскользнулся.", next: "dop11" },
-    dop10: { text: "Через час — падение. Коллега сломал руку.", next: "dop11" },
-    dop11: { text: "Ответственность за чистоту — у всех.", next: "dop12" },
-
-    // ... и так далее, можно продолжать, добавляя сцены про:
-    // - использование крана,
-    // - проверку тормозов у погрузчика,
-    // - работу на высоте,
-    // - хранение химикатов,
-    // - использование радиосвязи,
-    // - проверку газоанализатора,
-    // - поведение при утечке газа,
-    // - дыхательные аппараты,
-    // - обучение коллег,
-    // - отчёт о рисках,
-    // - внутренние аудиты,
-    // - кампании по безопасности и т.д.
-
-    // === ЗАВЕРШЕНИЕ (пример 100-й сцены) ===
-    scene100: {
-        text: "Вася смотрит на завод. Он знает: каждый день здесь — это выбор. Выбор между риском и ответственностью. Выбор в пользу жизни.",
-        next: null
+    death4: {
+        text: "Ты получил штраф на грубое нарушение ТБ(плохая концовка)",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
     }
-};
-*/
+    
+}
 
 let currentScene = "intro1";
+let bgAudio = new Audio();
+let currentSoundEffect = new Audio();
+currentSoundEffect.volume = 0.2;
+let HP = 100;
+let skipScene = false;
+bgAudio.loop = true;
 
-
-function showScene(sceneName){
+async function ShowScene(sceneName){
     const scene = scenes[sceneName];
-    
-    const text = document.getElementById("text");
-    text.textContent = scene.text;
-
     choices.innerHTML = "";
 
-    if(scene.next){
+    if(scene.damage) ApplyDamage(scene.damage);
+
+    if(scene.next) AddNextButton(scene)
+
+    else if(scene.choices) AddChoices(scene);
+
+    if(scene.bg) SetBgImage(scene.bg);
+
+    if(scene.heroLeft || scene.heroRight) SetCharacters(image, scene);
+    
+    const text = document.getElementById("text");
+
+    if(scene.bgAudio) SetBgAudio(scene.bgAudio);
+
+    if(scene.soundEffect) PlaysoundEffect(scene.soundEffect);
+
+    await DisplayText(text, scene.text, choices);
+}   
+
+function AddNextButton(scene){
+    const btn = document.createElement("button");
+    btn.className = "dalee-btn";
+    btn.textContent = "Продолжить...";
+    btn.onclick = () => ShowScene(scene.next);
+    btn.disabled = true;
+    choices.appendChild(btn);
+}
+
+
+function AddChoices(scene){
+    scene.choices.forEach(choice => {
         const btn = document.createElement("button");
-        btn.textContent = "Продолжить...";
-        btn.onclick = () => showScene(scene.next);
+        btn.className = "choices-btn";
+        btn.textContent = choice.text;
+        btn.onclick = () => {
+            if(choice.damage) ApplyDamage(choice.damage);
+            currentScene = choice.next;
+            ShowScene(choice.next);
+        }
+        btn.disabled = true;
         choices.appendChild(btn);
+    });
+}
+
+
+function SetCharacters(image,scene){
+    if(scene.heroLeft == "" || scene.heroLeft){
+        Array.from(document.getElementsByClassName("hero-left")).forEach(element => {element.remove()})
+        if(scene.heroLeft !== ""){ 
+            const hero = document.createElement("img");
+            hero.src = scene.heroLeft;
+            hero.className = "hero-left";
+            image.appendChild(hero);
+        }
     }
-    else if(scene.choice){
-        scene.choice.forEach(element => {
-            const btn = document.createElement("button");
-            btn.textContent = element.text;
-            btn.onclick = () => showScene(element.next);
-            choices.appendChild(btn);
-        });
+    if(scene.heroRight == "" || scene.heroRight){
+        Array.from(document.getElementsByClassName("hero-right")).forEach(element => {element.remove()})
+        if(scene.heroRight !== ""){ 
+            const hero = document.createElement("img");
+            hero.src = scene.heroRight;
+            hero.className = "hero-right";
+            image.appendChild(hero);
+        }
     }
 }
 
-const choices = document.getElementById("choices");
 
-document.addEventListener("DOMContentLoaded", function() {showScene(currentScene, choices)});
+function StartGame(){
+    document.getElementById("enabledInteractive").style.display = "none";
+    document.getElementById("header").style.paddingBottom = "20px";
+
+    document.getElementById("interactive").style.display = "";
+
+    ShowScene(currentScene, document.getElementById("choices"))
+}
+
+
+function ApplyDamage(damage){
+    HP -= damage;
+    if(HP < 0) HP = 0;
+    UpdateHPBar();
+
+    if(HP === 0){
+        document.getElementById("interactive").style.display = "none";
+        document.getElementById("enabledInteractive").style.display = "";
+        document.getElementById("lossText").style.display = "";
+
+    }
+}
+
+
+function UpdateHPBar(){
+    const hpBar = document.getElementById("hp-fill");
+    const hpText = document.getElementById("hp-text");
+
+    hpBar.style.width = `${HP}%`;
+    hpText.textContent = HP.toString();
+}
+
+
+function PlaysoundEffect(src){
+    currentSoundEffect.pause();
+    if(src !== "NaN"){
+        currentSoundEffect = new Audio(src);
+        currentSoundEffect.volume = 0.8;
+        currentSoundEffect.play()
+    }
+}
+
+
+function SetBgAudio(src){
+    if(bgAudio.src !== src){
+        bgAudio2 = new Audio(src);
+        bgAudio2.loop = true;
+        bgAudio2.play();
+        for (let i = 0; i <= 0.3; i += 0.00005) {
+            bgAudio.volume = 0.3 - i;
+            bgAudio2.volume = i;
+        }
+        bgAudio.pause();
+        bgAudio = bgAudio2;
+    }
+}
+
+function SetBgImage(url) {
+    const image = document.getElementById('image'); 
+    const img = new Image();
+  
+    img.onload = function() {
+        const imgWidth = this.naturalWidth;
+        const imgHeight = this.naturalHeight;
+    
+        const maxWidth = image.parentElement?.offsetWidth || imgWidth;
+        const maxHeight = image.parentElement?.offsetHeight || imgHeight;
+
+        const scale = Math.min(
+          maxWidth / imgWidth,
+          maxHeight / imgHeight,
+          1
+        );
+
+        const finalWidth = imgWidth * scale;
+        const finalHeight = imgHeight * scale;
+
+        image.style.width = finalWidth + 'px';
+        image.style.height = finalHeight + 'px';
+
+        image.style.backgroundImage = `url(${url})`;
+    };
+  
+    img.src = url;
+}
+
+async function DisplayText(element,text, choices){
+    element.textContent = "";
+    skipScene = false;
+    for(const char of text){
+        if (skipScene) {
+            element.textContent = text;
+            break;
+        }
+        else {
+            element.textContent += char;
+            await Sleep(30)    
+        }
+    }
+    choices.querySelectorAll("*").forEach(element => {
+        element.disabled = false;
+    });
+    return true;
+}
+
+function Sleep(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+window.addEventListener("resize", () => {
+    if(scenes[currentScene].bg) SetBgImage(scenes[currentScene].bg);
+})
+
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') skipScene = true;
+});

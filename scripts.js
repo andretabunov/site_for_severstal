@@ -13,11 +13,11 @@ const scenes = {
         heroRight: "img/characters/serega.png",
     },
     intro3: {
-        text: "Ты пришёл в свой цех, начал работать на токарном станке",
+        text: "Ты пришёл в свой цех, начал изготавливать деталь на токарном станке",
         next: "intro4",
         bg: "img/scene/stanok16x9.png",
         heroLeft: "img/characters/rabotuaga.png",
-        heroRight: "", // - пусто
+        heroRight: "NaN",
         soundEffect: "audio/short/tokarni(9s).mp3",
     },
     intro4: {
@@ -29,7 +29,7 @@ const scenes = {
         text: "Осмотрелся, и вдруг увидел столб дыма в цехе.",
         next: "intro6",
         bg: "img/scene/pojar.png",
-        heroLeft: "img/characters/rabotuaga.png",
+        heroLeft: "img/characters/schok.png",
         bgAudio: "audio/music/trevoznuaya.mp3"
     },
     intro6: {
@@ -38,37 +38,30 @@ const scenes = {
             { text: "Включу пожарную сигнализацию", next: "activateSignalization1" },
             { text: "Попытаюсь выянить причину не поднимая тревогу", next: "findingСause", damage: 20 }
         ],
-        soundEffect: "",
-        bgAudio: ""
     },
     // Левая ветка
     activateSignalization1: {
         text: "Быстро включаешь извещатель и зовёшь коллег",
         next: "activateSignalization2",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        heroLeft: "img/characters/rabotuaga.png",
+        heroRight: "img/characters/knopka.png",
+        soundEffect: "audio/short/promyishlennaya-signalizatsiya.mp3",
     },
     activateSignalization2: {
         text: "Что делать дальше?",
         choices: [
-            {text: "Хватаю огнетушитель", next: "fireExtinguisher1"},
+            {text: "Хватаю огнетушитель", next: "fireExtinguisher1", damage: 15},
             {text: "Организую эвакуацию, жду пожарных", next: "evacuation"}
         ],
         bg: "",
-        heroLeft: "",
-        heroRight: "",
+        heroRight: "NaN",
         soundEffect: "",
         bgAudio: ""
     },
     evacuation: {
         text: "Выводишь всех людей, следишь, чтобы все выбежали",
         next: "salvation1",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
+        bg: "img/scene/runningWorkers.png",
         soundEffect: "",
         bgAudio: ""
     },
@@ -85,7 +78,7 @@ const scenes = {
         text: "О нет! огнетушитель пуст! Что же мне делать?",
         choices: [
             {text: "Искать другой огнетушитель", next: "fireExtinguisher1"},
-            {text: "Прячусь и жду помощи", next: "hidding"}
+            {text: "Прячусь и жду помощи", next: "hidding", damage: 10}
         ],
         bg: "",
         heroLeft: "",
@@ -97,7 +90,7 @@ const scenes = {
         text: "Что же делать если дым усиливается?",
         choices: [ 
             {text: "Беру маску/ткань и направляюсь к выходу", next: "salvation1"}, 
-            {text: "Паникую", next: "death1"} 
+            {text: "Паникую", next: "death1", damage: 40} 
         ],
         bg: "",
         heroLeft: "",
@@ -107,29 +100,18 @@ const scenes = {
     },
     // Правая ветка
     findingСause: {
-        text: "Теряешь время, огонь распространяется!",
+        text: "Ты только теряешь время, огонь распространяется всё быстрее!",
         next: "panicInWorkShop1",
         bg: "",
         heroLeft: "",
         heroRight: "",
         soundEffect: "",
-        bgAudio: ""
+        bgAudio: "",
+        damage: 20
     },
     panicInWorkShop1: {
         text: "Огонь увеличивается, начинается паника в цехе!",
-        next: "helpingColleague",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
-    },
-    helpingColleague: {
-        text: "Коллега не может встать",
-        choices: [
-            {text: "Помогаю выбраться", next: "panicInWorkShop2"},
-            {text: "Оставляю и бегу", next: "lossInDark"}
-        ],
+        next: "panicInWorkShop2",
         bg: "",
         heroLeft: "",
         heroRight: "",
@@ -137,10 +119,41 @@ const scenes = {
         bgAudio: ""
     },
     panicInWorkShop2: {
+        text: "В воздухе очень много дыма, тебе тяжело дышать.",
+        next: "helpingColleague1",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: "",
+        damage: 20
+    },
+    helpingColleague1: {
+        text: "И вдруг ты замечаешь что, коллега не может встать",
+        choices: [
+            {text: "Помочь выбраться", next: "helpingColleague2"},
+            {text: "Оставить коллегу и бежать", next: "lossInDark", damage: 40}
+        ],
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
+    },
+    helpingColleague2: {
+        text: "Ты подаёшь руку коллеге и помогаешь встать, вы бежите на выход",
+        next: "panicInWorkShop3",
+        bg: "",
+        heroLeft: "",
+        heroRight: "",
+        soundEffect: "",
+        bgAudio: ""
+    },
+    panicInWorkShop3: {
         text: "Стажёры в цехе в панике, надо им помочь.",
         choices: [
             {text: "Помочь им выбраться через эвакуационный выход", next: "exitBlocked"},
-            {text: "Паниковать и не понимать что делать", next: "lossInDark"}
+            {text: "Паниковать и не знать что делать, ведь ты не ходил на занятие по технике безопастности", next: "lossInDark", damage: 40}
         ],
         bg: "",
         heroLeft: "",
@@ -220,7 +233,7 @@ const scenes = {
     // Смерть
     death1: {
         text: "Ты теряешь ориентацию, задыхаешься",
-        next: "smertVnishite2",
+        next: "death2",
         bg: "",
         heroLeft: "",
         heroRight: "",
@@ -229,7 +242,7 @@ const scenes = {
     },
     death2: {
         text: "Ты потерял сознание от дыма",
-        next: "smertVnishite3",
+        next: "death3",
         bg: "",
         heroLeft: "",
         heroRight: "",
@@ -238,7 +251,7 @@ const scenes = {
     },
     death3: {
         text: "Тебя спасли медики которые приехали на вызов",
-        next: "smertVnishite4",
+        next: "death4",
         bg: "",
         heroLeft: "",
         heroRight: "",
@@ -258,13 +271,16 @@ const scenes = {
 
 let currentScene = "intro1";
 let bgAudio = new Audio();
+musicToggle = true;
 let currentSoundEffect = new Audio();
+soundToggle = true;
 currentSoundEffect.volume = 0.2;
 let HP = 100;
 let skipScene = false;
 bgAudio.loop = true;
 
 async function ShowScene(sceneName){
+    currentScene = sceneName;
     const scene = scenes[sceneName];
     choices.innerHTML = "";
 
@@ -277,12 +293,12 @@ async function ShowScene(sceneName){
     if(scene.bg) SetBgImage(scene.bg);
 
     if(scene.heroLeft || scene.heroRight) SetCharacters(image, scene);
-    
+
+    if(scene.bgAudio && musicToggle) SetBgAudio(scene.bgAudio);
+
+    if(scene.soundEffect && soundToggle) PlaysoundEffect(scene.soundEffect);
+
     const text = document.getElementById("text");
-
-    if(scene.bgAudio) SetBgAudio(scene.bgAudio);
-
-    if(scene.soundEffect) PlaysoundEffect(scene.soundEffect);
 
     await DisplayText(text, scene.text, choices);
 }   
@@ -314,18 +330,18 @@ function AddChoices(scene){
 
 
 function SetCharacters(image,scene){
-    if(scene.heroLeft == "" || scene.heroLeft){
+    if(scene.heroLeft === "NaN" || scene.heroLeft){
         Array.from(document.getElementsByClassName("hero-left")).forEach(element => {element.remove()})
-        if(scene.heroLeft !== ""){ 
+        if(scene.heroLeft !== "NaN"){ 
             const hero = document.createElement("img");
             hero.src = scene.heroLeft;
             hero.className = "hero-left";
             image.appendChild(hero);
         }
     }
-    if(scene.heroRight == "" || scene.heroRight){
+    if(scene.heroRight === "NaN" || scene.heroRight){
         Array.from(document.getElementsByClassName("hero-right")).forEach(element => {element.remove()})
-        if(scene.heroRight !== ""){ 
+        if(scene.heroRight !== "NaN"){ 
             const hero = document.createElement("img");
             hero.src = scene.heroRight;
             hero.className = "hero-right";
@@ -340,6 +356,7 @@ function StartGame(){
     document.getElementById("header").style.paddingBottom = "20px";
 
     document.getElementById("interactive").style.display = "";
+    document.getElementById("hp-bar").style.display = "";
 
     ShowScene(currentScene, document.getElementById("choices"))
 }
@@ -351,11 +368,9 @@ function ApplyDamage(damage){
     UpdateHPBar();
 
     if(HP === 0){
-        document.getElementById("interactive").style.display = "none";
-        document.getElementById("enabledInteractive").style.display = "";
-        document.getElementById("lossText").style.display = "";
-
-    }
+        currentScene = "death1";
+        ShowScene(currentScene);
+    } 
 }
 
 
@@ -365,6 +380,7 @@ function UpdateHPBar(){
 
     hpBar.style.width = `${HP}%`;
     hpText.textContent = HP.toString();
+    hpBar.style.background = HP > 60 ? "#70ff29" : HP > 30 ? "#ffa929" : "#ff2929"
 }
 
 
@@ -400,20 +416,16 @@ function SetBgImage(url) {
         const imgWidth = this.naturalWidth;
         const imgHeight = this.naturalHeight;
     
-        const maxWidth = image.parentElement?.offsetWidth || imgWidth;
-        const maxHeight = image.parentElement?.offsetHeight || imgHeight;
+        const parentWidth = image.parentElement?.offsetWidth || imgWidth;
+        const parentHeight = image.parentElement?.offsetHeight || imgHeight;
 
-        const scale = Math.min(
-          maxWidth / imgWidth,
-          maxHeight / imgHeight,
-          1
-        );
+        const targetWidth = parentWidth * 0.6;
 
-        const finalWidth = imgWidth * scale;
-        const finalHeight = imgHeight * scale;
+        const scale = targetWidth / imgWidth;
+        const targetHeight = imgHeight * scale;
 
-        image.style.width = finalWidth + 'px';
-        image.style.height = finalHeight + 'px';
+        image.style.width = targetWidth + 'px';
+        image.style.height = targetHeight + 'px';
 
         image.style.backgroundImage = `url(${url})`;
     };
@@ -444,6 +456,32 @@ function Sleep(ms){
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+document.getElementById("theme-btn").onclick = function() {
+    document.body.classList.toggle("dark-theme");
+    if(document.body.classList.contains("dark-theme")) {
+        this.textContent = "🌞";
+        document.getElementById("logo").src = "img/base/logo_black.png";
+    } else {
+        this.textContent = "🌙"; 
+        document.getElementById("logo").src = "img/base/logo_blue.png";
+    }
+};
+
+document.getElementById("music-btn").onclick = function() {
+    musicToggle = !musicToggle;
+    this.querySelector('img').src = musicToggle ? "img/base/music-icon.png" : "img/base/no-music-icon.png";
+    if(!musicToggle) bgAudio.pause();
+    else if(musicToggle && scenes[currentScene]) {
+        SetBgAudio(scenes[currentScene].bgAudio);
+    }
+};
+
+document.getElementById("sound-btn").onclick = function() {
+    soundToggle = !soundToggle;
+    this.querySelector('img').src = soundToggle ? "img/base/sound-icon.png" : "img/base/no-sound-icon.png";
+    currentSoundEffect.pause();
+};
+
 window.addEventListener("resize", () => {
     if(scenes[currentScene].bg) SetBgImage(scenes[currentScene].bg);
 })
@@ -451,3 +489,9 @@ window.addEventListener("resize", () => {
 document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') skipScene = true;
 });
+
+
+const RemoveHint = function(e) {
+    if (e.code === 'Space') { document.getElementById("hint").remove(); document.removeEventListener("keydown", RemoveHint); }
+}
+document.addEventListener('keydown', RemoveHint);

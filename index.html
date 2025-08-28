@@ -8,30 +8,35 @@
     </head>
     <body>
         <div id="game">
-            <img src="img/base/Severstal_Logo_CYR_Blue_RGB.png" id="logo"></img>
+            <div style="display: flex; justify-content: space-between;">
+                <img src="img/base/logo_blue.png" id="logo"></img>
+                <div id="header-btn">
+                    <button id="music-btn"><img src="img/base/music-icon.png"></button>
+                    <button id="sound-btn"><img src="img/base/sound-icon.png"></button>
+                    <button id="theme-btn">🌙</button>
+                </div>
+            </div>
             <div id="header">
                 <h1 id="headerText">Викторина по ТБ</h1>
             </div>
-            <div id="hp-bar">
-                    <span>ЗДОРОВЬЕ: </span>
-                    <div id="hp-fill">
-                        <span id="hp-text">100</span>
-                    </div>
+            <div id="hp-bar" style="display: none;">
+                <span>Здоровье: </span>
+                <div id="hp-fill">
+                    <span id="hp-text">100</span>
                 </div>
-            <div>
-                <span style="display: none;" id="lossText">Ты проиграл!</span>
-                <Button onclick="StartGame()" id="enabledInteractive">Начать игру</Button>
             </div>
-            <div id="interactive" style="display: none;">
+            <Button onclick="StartGame()" id="enabledInteractive">Начать игру</Button>
+
+            <div id="interactive" style="display: none; justify-content: space-between;">
                 <div id="content">
                     <div id="image"> </div>
                     <div id="text"> </div>
                 </div>
+                <span id="hint"><span style="color: black; background-color: aliceblue; border-radius: 5px; padding: 1px 3px 1px 3px">Пробел</span> - пропустить вывод текста</span>
                 <div id="choices"></div>
             </div>
             <div id="footer">
                 <p>все права защищены (с)</p>
-                <p>дети, батарея, podval (c)</p>
             </div>
         </div>
         <script src="scripts.js"></script>

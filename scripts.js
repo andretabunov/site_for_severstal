@@ -10,7 +10,7 @@ const scenes = {
     intro2: {
         text: "Поприветсвовал своего коллегу — своего лучшего друга, Серёгу.",
         next: "intro3",
-        heroRight: "img/characters/serega.png",
+        heroRight: "img/characters/serega.png"
     },
     intro3: {
         text: "Ты пришёл в свой цех, начал изготавливать деталь на токарном станке",
@@ -18,7 +18,7 @@ const scenes = {
         bg: "img/scene/stanok16x9.png",
         heroLeft: "img/characters/rabotuaga.png",
         heroRight: "NaN",
-        soundEffect: "audio/short/tokarni(9s).mp3",
+        soundEffect: "audio/short/tokarni(9s).mp3"
     },
     intro4: {
         text: "После обеда ты вернулся к станку, и вдруг почувствовал резкий запах дыма и гари",
@@ -28,7 +28,7 @@ const scenes = {
     intro5: {
         text: "Осмотрелся, и вдруг увидел столб дыма в цехе.",
         next: "intro6",
-        bg: "img/scene/pojar.png",
+        bg: "img/scene/pojar1.png",
         heroLeft: "img/characters/schok.png",
         bgAudio: "audio/music/trevoznuaya.mp3"
     },
@@ -37,7 +37,7 @@ const scenes = {
         choices: [
             { text: "Включу пожарную сигнализацию", next: "activateSignalization1" },
             { text: "Попытаюсь выянить причину не поднимая тревогу", next: "findingСause", damage: 20 }
-        ],
+        ]
     },
     // Левая ветка
     activateSignalization1: {
@@ -45,7 +45,7 @@ const scenes = {
         next: "activateSignalization2",
         heroLeft: "img/characters/rabotuaga.png",
         heroRight: "img/characters/knopka.png",
-        soundEffect: "audio/short/promyishlennaya-signalizatsiya.mp3",
+        soundEffect: "audio/short/promyishlennaya-signalizatsiya.mp3"
     },
     activateSignalization2: {
         text: "Что делать дальше?",
@@ -53,26 +53,20 @@ const scenes = {
             {text: "Хватаю огнетушитель", next: "fireExtinguisher1", damage: 15},
             {text: "Организую эвакуацию, жду пожарных", next: "evacuation"}
         ],
-        bg: "",
-        heroRight: "NaN",
-        soundEffect: "",
-        bgAudio: ""
+        heroRight: "NaN"
     },
     evacuation: {
         text: "Выводишь всех людей, следишь, чтобы все выбежали",
         next: "salvation1",
         bg: "img/scene/runningWorkers.png",
-        soundEffect: "",
-        bgAudio: ""
+        soundEffect: "audio/short/runningWorkers.mp3"
+
     },
     fireExtinguisher1: {
         text: "Огонь немного уменьшается, но дым нарастает",
         next: "fireExtinguisher2",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        heroRight: "img/characters/fireExtinguisher.png",
+        soundEffect: "audio/short/fire-extinguisher.mp3"
     },
     fireExtinguisher2: {
         text: "О нет! огнетушитель пуст! Что же мне делать?",
@@ -80,11 +74,8 @@ const scenes = {
             {text: "Искать другой огнетушитель", next: "fireExtinguisher1"},
             {text: "Прячусь и жду помощи", next: "hidding", damage: 10}
         ],
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        heroRight: "NaN",
+        soundEffect: "audio/short/fire-extinguisher-end.mp3"
     },
     hidding: {
         text: "Что же делать если дым усиливается?",
@@ -92,74 +83,41 @@ const scenes = {
             {text: "Беру маску/ткань и направляюсь к выходу", next: "salvation1"}, 
             {text: "Паникую", next: "death1", damage: 40} 
         ],
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        bg: "img/scene/pojar2.png",
+        heroLeft: "img/characters/schok.png"
     },
     // Правая ветка
     findingСause: {
         text: "Ты только теряешь время, огонь распространяется всё быстрее!",
         next: "panicInWorkShop1",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: "",
         damage: 20
     },
     panicInWorkShop1: {
         text: "Огонь увеличивается, начинается паника в цехе!",
-        next: "panicInWorkShop2",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        next: "panicInWorkShop2"
     },
     panicInWorkShop2: {
         text: "В воздухе очень много дыма, тебе тяжело дышать.",
         next: "helpingColleague1",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: "",
         damage: 20
     },
     helpingColleague1: {
         text: "И вдруг ты замечаешь что, коллега не может встать",
         choices: [
             {text: "Помочь выбраться", next: "helpingColleague2"},
-            {text: "Оставить коллегу и бежать", next: "lossInDark", damage: 40}
-        ],
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+            {text: "Оставить коллегу и бежать", next: "lossInDark", damage: 30}
+        ]
     },
     helpingColleague2: {
         text: "Ты подаёшь руку коллеге и помогаешь встать, вы бежите на выход",
-        next: "panicInWorkShop3",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        next: "panicInWorkShop3"
     },
     panicInWorkShop3: {
         text: "Стажёры в цехе в панике, надо им помочь.",
         choices: [
             {text: "Помочь им выбраться через эвакуационный выход", next: "exitBlocked"},
             {text: "Паниковать и не знать что делать, ведь ты не ходил на занятие по технике безопастности", next: "lossInDark", damage: 40}
-        ],
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        ]
     },
     exitBlocked: {
         text: "О нет! Этот выход заблокирован",
@@ -167,20 +125,10 @@ const scenes = {
             {text: "Искать другой эвакуационный выход", next: "salvation1"},
             {text: "Паниковать", next: "death1"}
         ],
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
     },
     lossInDark: {
         text: "Ты потерялся во тьме и дыму",
-        next: "death1",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        next: "death1"
     },
 
 
@@ -189,95 +137,57 @@ const scenes = {
     salvation1: {
         text: "Выходишь на свежий воздух",
         next: "salvation2",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        bg: "img/scene/spasenie.png",
+        heroLeft: "NaN",
+        heroRight: "NaN",
+        bgAudio: "audio/music/starborn.mp3"
     },
     salvation2: {
         text: "Ты спасён!",
-        next: "salvation3",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        next: "salvation3"
     },
     salvation3: {
         text: "На улице ты сообщаешь руководителю, встречаешь пожарных",
-        next: "salvation4",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        next: "salvation4"
     },
     salvation4: {
         text: "Пожарные тушат огонь.",
-        next: "salvation5",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        next: "salvation5"
     },
     salvation5: {
         text: "Группа в безопастности — ПОБЕДА!",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
     },
     // Смерть
     death1: {
         text: "Ты теряешь ориентацию, задыхаешься",
         next: "death2",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        bg: "img/characters/sittingInFire.png",
+        heroLeft: "NaN",
+        heroRight: "NaN"
     },
     death2: {
         text: "Ты потерял сознание от дыма",
-        next: "death3",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        next: "death3"
     },
     death3: {
         text: "Тебя спасли медики которые приехали на вызов",
-        next: "death4",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
+        next: "death4"
     },
     death4: {
         text: "Ты получил штраф на грубое нарушение ТБ(плохая концовка)",
-        bg: "",
-        heroLeft: "",
-        heroRight: "",
-        soundEffect: "",
-        bgAudio: ""
     }
     
 }
 
 let currentScene = "intro1";
 let bgAudio = new Audio();
+bgAudio.loop = true;
 musicToggle = true;
 let currentSoundEffect = new Audio();
 soundToggle = true;
 currentSoundEffect.volume = 0.2;
 let HP = 100;
 let skipScene = false;
-bgAudio.loop = true;
 
 async function ShowScene(sceneName){
     currentScene = sceneName;
@@ -370,6 +280,7 @@ function ApplyDamage(damage){
     if(HP === 0){
         currentScene = "death1";
         ShowScene(currentScene);
+        skipScene = true;
     } 
 }
 
